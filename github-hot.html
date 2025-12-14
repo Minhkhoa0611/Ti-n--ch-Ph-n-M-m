@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>MK SOF - GitHub hay nên biết</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f4f4f4 100%);
+            margin: 0;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 100vw;
+            width: 100vw;
+            margin: 0;
+            background: #fff;
+            padding: 32px 0;
+            border-radius: 0;
+            box-shadow: none;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: #2d3a4b;
+            margin-bottom: 24px;
+        }
+        .tab-menu {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+            gap: 8px;
+        }
+        .tab-btn {
+            padding: 10px 28px;
+            border: none;
+            background: #e0e7ff;
+            color: #2563eb;
+            font-size: 1.08rem;
+            font-weight: 500;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            outline: none;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tab-btn.active, .tab-btn:focus {
+            background: #fff;
+            color: #22223b;
+            border-bottom: 2px solid #fff;
+            box-shadow: 0 -2px 8px #e0e7ff60;
+            z-index: 2;
+        }
+        .gh-list {
+            margin-top: 12px;
+            width: 100vw;
+            max-width: 100vw;
+            padding: 0 24px 24px 24px;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 18px;
+        }
+        .gh-item {
+            background: #f6f8fa;
+            border-radius: 10px;
+            padding: 18px 16px;
+            margin-bottom: 0;
+            box-shadow: 0 1px 4px #e0e7ff40;
+            transition: box-shadow 0.2s, transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+        .gh-item:hover {
+            box-shadow: 0 4px 16px #a5b4fc60;
+            transform: translateY(-2px) scale(1.01);
+        }
+        .gh-item b {
+            color: #2563eb;
+            font-size: 1.08rem;
+            margin-bottom: 4px;
+        }
+        .gh-item a {
+            color: #0d9488;
+            text-decoration: underline;
+            font-weight: 500;
+            margin-top: 6px;
+            width: fit-content;
+        }
+        .gh-meta {
+            color: #64748b;
+            font-size: 0.98rem;
+            margin-bottom: 4px;
+        }
+        .gh-stars {
+            color: #f59e42;
+            margin-left: 8px;
+        }
+        @media (max-width: 900px) {
+            .gh-list {
+                grid-template-columns: 1fr;
+                padding: 0 4px 12px 4px;
+            }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 8px 0; }
+            .tab-menu { flex-direction: column; gap: 4px; }
+            .tab-btn { width: 100%; }
+            .gh-list { padding: 0 2vw 12px 2vw; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MK SOF - Một số GitHub hay nên biết</h1>
+        <div class="tab-menu">
+            <a class="tab-btn" href="software.html"><i class="fa-solid fa-box"></i> Phần mềm</a>
+            <a class="tab-btn" href="cmd.html"><i class="fa-solid fa-terminal"></i> Lệnh tối ưu</a>
+            <a class="tab-btn" href="browser-tools.html"><i class="fa-solid fa-puzzle-piece"></i> Tiện ích trình duyệt</a>
+            <a class="tab-btn" href="github-hot.html"><i class="fa-brands fa-github"></i> GitHub hay</a>
+            <a class="tab-btn" href="dev-tools.html"><i class="fa-solid fa-wrench"></i> Dev tools</a>
+            <a class="tab-btn" href="tools-hot.html"><i class="fa-solid fa-toolbox"></i> Công cụ hay</a>
+            <a class="tab-btn" href="about.html"><i class="fa-solid fa-circle-info"></i> Giới thiệu</a>
+        </div>
+        <div class="gh-list">
+            <div class="gh-item">
+                <b><i class="fa-brands fa-github"></i> freeCodeCamp/freeCodeCamp</b>
+                <div class="gh-meta">Nền tảng học lập trình miễn phí, thực hành trực tiếp trên web.<span class="gh-stars"><i class="fa-solid fa-star"></i> 370k+</span></div>
+                <a href="https://github.com/freeCodeCamp/freeCodeCamp" target="_blank">Xem repo</a>
+            </div>
+            <div class="gh-item">
+                <b><i class="fa-brands fa-github"></i> TheAlgorithms/Python</b>
+                <div class="gh-meta">Tổng hợp thuật toán, cấu trúc dữ liệu Python có chú thích rõ ràng.<span class="gh-stars"><i class="fa-solid fa-star"></i> 170k+</span></div>
+                <a href="https://github.com/TheAlgorithms/Python" target="_blank">Xem repo</a>
+            </div>
+            <div class="gh-item">
+                <b><i class="fa-brands fa-github"></i> public-apis/public-apis</b>
+                <div class="gh-meta">Danh sách API công khai miễn phí cho lập trình viên.<span class="gh-stars"><i class="fa-solid fa-star"></i> 260k+</span></div>
+                <a href="https://github.com/public-apis/public-apis" target="_blank">Xem repo</a>
+            </div>
+            <div class="gh-item">
+                <b><i class="fa-brands fa-github"></i> awesome-selfhosted/awesome-selfhosted</b>
+                <div class="gh-meta">Tổng hợp phần mềm tự host (self-hosted) cho cá nhân, doanh nghiệp.<span class="gh-stars"><i class="fa-solid fa-star"></i> 140k+</span></div>
+                <a href="https://github.com/awesome-selfhosted/awesome-selfhosted" target="_blank">Xem repo</a>
+            </div>
+            <div class="gh-item">
+                <b><i class="fa-brands fa-github"></i> EbookFoundation/free-programming-books</b>
+                <div class="gh-meta">Kho sách lập trình miễn phí nhiều ngôn ngữ.<span class="gh-stars"><i class="fa-solid fa-star"></i> 310k+</span></div>
+                <a href="https://github.com/EbookFoundation/free-programming-books" target="_blank">Xem repo</a>
+            </div>
+            <div class="gh-item">
+                <b><i class="fa-brands fa-github"></i> danistefanovic/build-your-own-x</b>
+                <div class="gh-meta">Tự xây dựng các hệ thống (OS, trình duyệt, database, AI...) từ đầu.<span class="gh-stars"><i class="fa-solid fa-star"></i> 160k+</span></div>
+                <a href="https://github.com/danistefanovic/build-your-own-x" target="_blank">Xem repo</a>
+            </div>
+            <div class="gh-item">
+                <b><i class="fa-brands fa-github"></i> microsoft/Web-Dev-For-Beginners</b>
+                <div class="gh-meta">Khóa học web miễn phí từ Microsoft, lý thuyết + thực hành.<span class="gh-stars"><i class="fa-solid fa-star"></i> 75k+</span></div>
+                <a href="https://github.com/microsoft/Web-Dev-For-Beginners" target="_blank">Xem repo</a>
+            </div>
+            <div class="gh-item">
+                <b><i class="fa-brands fa-github"></i> developer-roadmap</b>
+                <div class="gh-meta">Lộ trình học lập trình viên Frontend, Backend, DevOps...<span class="gh-stars"><i class="fa-solid fa-star"></i> 260k+</span></div>
+                <a href="https://github.com/kamranahmedse/developer-roadmap" target="_blank">Xem repo</a>
+            </div>
+            <div class="gh-item">
+                <b><i class="fa-brands fa-github"></i> f/awesome-chatgpt-prompts</b>
+                <div class="gh-meta">Tổng hợp prompt ChatGPT hay, sáng tạo.<span class="gh-stars"><i class="fa-solid fa-star"></i> 100k+</span></div>
+                <a href="https://github.com/f/awesome-chatgpt-prompts" target="_blank">Xem repo</a>
+            </div>
+            <div class="gh-item">
+                <b><i class="fa-brands fa-github"></i> vercel/next.js</b>
+                <div class="gh-meta">Framework React mạnh mẽ cho web hiện đại.<span class="gh-stars"><i class="fa-solid fa-star"></i> 120k+</span></div>
+                <a href="https://github.com/vercel/next.js" target="_blank">Xem repo</a>
+            </div>
+            <div class="gh-item">
+                <b><i class="fa-brands fa-github"></i> facebook/react</b>
+                <div class="gh-meta">Thư viện UI nổi tiếng cho web.<span class="gh-stars"><i class="fa-solid fa-star"></i> 220k+</span></div>
+                <a href="https://github.com/facebook/react" target="_blank">Xem repo</a>
+            </div>
+            <div class="gh-item">
+                <b><i class="fa-brands fa-github"></i> mui/material-ui</b>
+                <div class="gh-meta">Thư viện UI Material Design cho React.<span class="gh-stars"><i class="fa-solid fa-star"></i> 90k+</span></div>
+                <a href="https://github.com/mui/material-ui" target="_blank">Xem repo</a>
+            </div>
+            <div class="gh-item">
+                <b><i class="fa-brands fa-github"></i> tailwindlabs/tailwindcss</b>
+                <div class="gh-meta">Framework CSS tiện dụng, hiện đại.<span class="gh-stars"><i class="fa-solid fa-star"></i> 110k+</span></div>
+                <a href="https://github.com/tailwindlabs/tailwindcss" target="_blank">Xem repo</a>
+            </div>
+            <div class="gh-item">
+                <b><i class="fa-brands fa-github"></i> nvbn/thefuck</b>
+                <div class="gh-meta">Sửa lỗi lệnh terminal thông minh cho dev.<span class="gh-stars"><i class="fa-solid fa-star"></i> 80k+</span></div>
+                <a href="https://github.com/nvbn/thefuck" target="_blank">Xem repo</a>
+            </div>
+            <div class="gh-item">
+                <b><i class="fa-brands fa-github"></i> ytdl-org/youtube-dl</b>
+                <div class="gh-meta">Tải video từ YouTube và nhiều trang khác bằng lệnh.<span class="gh-stars"><i class="fa-solid fa-star"></i> 120k+</span></div>
+                <a href="https://github.com/ytdl-org/youtube-dl" target="_blank">Xem repo</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

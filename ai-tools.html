@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MK SOF - AI Tools</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f4f4f4 100%);
+            margin: 0;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 100vw;
+            width: 100vw;
+            margin: 0;
+            background: #fff;
+            padding: 32px 0;
+            border-radius: 0;
+            box-shadow: none;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: #2d3a4b;
+            margin-bottom: 28px;
+            letter-spacing: 1px;
+        }
+        .tab-menu {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+            gap: 8px;
+        }
+        .tab-btn {
+            padding: 10px 28px;
+            border: none;
+            background: #e0e7ff;
+            color: #2563eb;
+            font-size: 1.08rem;
+            font-weight: 500;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            outline: none;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tab-btn.active, .tab-btn:focus {
+            background: #fff;
+            color: #22223b;
+            border-bottom: 2px solid #fff;
+            box-shadow: 0 -2px 8px #e0e7ff60;
+            z-index: 2;
+        }
+        .software-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 18px;
+            width: 100vw;
+            max-width: 100vw;
+            padding: 0 24px 24px 24px;
+            box-sizing: border-box;
+        }
+        .software {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f6f8fa;
+            border-radius: 10px;
+            padding: 14px 18px;
+            box-shadow: 0 2px 8px #e0e7ff50;
+            transition: box-shadow 0.2s, transform 0.2s;
+            min-width: 0;
+        }
+        .software:hover {
+            box-shadow: 0 4px 16px #a5b4fc60;
+            transform: translateY(-2px) scale(1.01);
+        }
+        .info {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-width: 0;
+        }
+        .info i {
+            font-size: 2rem;
+            color: #6366f1;
+            width: 36px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .name {
+            font-size: 1.08rem;
+            font-weight: 500;
+            color: #22223b;
+        }
+        .version {
+            font-size: 0.85rem;
+            color: #4f46e5;
+            font-weight: 400;
+        }
+        .desc {
+            font-size: 0.92rem;
+            color: #6b7280;
+        }
+        .download-btn {
+            padding: 8px 22px;
+            border: none;
+            background: linear-gradient(90deg, #6366f1 60%, #60a5fa 100%);
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            box-shadow: 0 2px 8px #6366f140;
+            transition: background 0.2s, transform 0.2s;
+            white-space: nowrap;
+        }
+        .download-btn:hover {
+            background: linear-gradient(90deg, #4f46e5 60%, #2563eb 100%);
+            transform: scale(1.05);
+        }
+        .group-title {
+            grid-column: 1 / -1;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2563eb;
+            margin: 18px 0 6px 0;
+            padding: 8px 0 2px 0;
+            border-bottom: 1px solid #e0e7ff;
+            background: #f1f5ff;
+            border-radius: 6px;
+            text-align: left;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 900px) {
+            .software-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 8px 0; }
+            .software-list { padding: 0 4px 12px 4px; }
+            .software { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .download-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tab-menu">
+            <a class="tab-btn" href="software.html"><i class="fa-solid fa-box"></i> Phần mềm</a>
+            <a class="tab-btn" href="cmd.html"><i class="fa-solid fa-terminal"></i> Lệnh tối ưu</a>
+            <a class="tab-btn" href="browser-tools.html"><i class="fa-solid fa-puzzle-piece"></i> Tiện ích trình duyệt</a>
+            <a class="tab-btn" href="github-hot.html"><i class="fa-brands fa-github"></i> GitHub hay</a>
+            <a class="tab-btn" href="dev-tools.html"><i class="fa-solid fa-wrench"></i> Dev tools</a>
+            <a class="tab-btn active" href="ai-tools.html"><i class="fa-solid fa-robot"></i> AI Tools</a>
+            <a class="tab-btn" href="about.html"><i class="fa-solid fa-circle-info"></i> Giới thiệu</a>
+        </div>
+        <div id="software-search-bar" style="display:flex;justify-content:center;margin-bottom:18px;">
+            <input id="software-search-input" type="text" placeholder="Tìm kiếm AI tool..." style="width:340px;padding:10px 14px;border-radius:6px;border:1px solid #e0e7ff;font-size:1rem;box-shadow:0 1px 4px #e0e7ff40;">
+        </div>
+        <div class="software-list" id="software-list">
+            <!-- AI Chat -->
+            <div class="group-title">AI Chat</div>
+            <!-- ChatGPT -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-brands fa-rocketchat"></i>
+                    <div>
+                        <div class="name">ChatGPT</div>
+                        <div class="desc">Trò chuyện AI mạnh mẽ của OpenAI</div>
+                    </div>
+                </div>
+                <a href="https://chat.openai.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Google Gemini -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-brands fa-google"></i>
+                    <div>
+                        <div class="name">Google Gemini</div>
+                        <div class="desc">Trợ lý AI đa năng của Google</div>
+                    </div>
+                </div>
+                <a href="https://gemini.google.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Claude AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-brain"></i>
+                    <div>
+                        <div class="name">Claude AI</div>
+                        <div class="desc">AI hội thoại thông minh của Anthropic</div>
+                    </div>
+                </div>
+                <a href="https://claude.ai/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Copilot (Microsoft) -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-brands fa-microsoft"></i>
+                    <div>
+                        <div class="name">Microsoft Copilot</div>
+                        <div class="desc">Trợ lý AI tích hợp của Microsoft</div>
+                    </div>
+                </div>
+                <a href="https://copilot.microsoft.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Perplexity AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <div>
+                        <div class="name">Perplexity AI</div>
+                        <div class="desc">AI hỏi đáp tìm kiếm thông minh</div>
+                    </div>
+                </div>
+                <a href="https://www.perplexity.ai/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Poe by Quora -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-comments"></i>
+                    <div>
+                        <div class="name">Poe (Quora)</div>
+                        <div class="desc">Nền tảng AI đa mô hình, nhiều bot</div>
+                    </div>
+                </div>
+                <a href="https://poe.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- You.com AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <div>
+                        <div class="name">You.com AI</div>
+                        <div class="desc">Công cụ tìm kiếm AI đa năng</div>
+                    </div>
+                </div>
+                <a href="https://you.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Pi AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-circle-nodes"></i>
+                    <div>
+                        <div class="name">Pi AI</div>
+                        <div class="desc">AI trò chuyện thân thiện, hỗ trợ cá nhân</div>
+                    </div>
+                </div>
+                <a href="https://pi.ai/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Phind AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-code"></i>
+                    <div>
+                        <div class="name">Phind AI</div>
+                        <div class="desc">AI tìm kiếm & giải đáp cho lập trình viên</div>
+                    </div>
+                </div>
+                <a href="https://www.phind.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Llama 2 (Meta) -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-hippo"></i>
+                    <div>
+                        <div class="name">Llama 2 (Meta)</div>
+                        <div class="desc">Mô hình AI mã nguồn mở của Meta</div>
+                    </div>
+                </div>
+                <a href="https://llama.meta.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Grok AI (xAI) -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-robot"></i>
+                    <div>
+                        <div class="name">Grok AI (xAI)</div>
+                        <div class="desc">AI hội thoại của Elon Musk (X)</div>
+                    </div>
+                </div>
+                <a href="https://grok.x.ai/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- HuggingChat -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-face-smile"></i>
+                    <div>
+                        <div class="name">HuggingChat</div>
+                        <div class="desc">AI mã nguồn mở từ Hugging Face</div>
+                    </div>
+                </div>
+                <a href="https://huggingface.co/chat/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Mistral AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-wind"></i>
+                    <div>
+                        <div class="name">Mistral AI</div>
+                        <div class="desc">AI mã nguồn mở, đa ngôn ngữ</div>
+                    </div>
+                </div>
+                <a href="https://chat.mistral.ai/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- ChatGLM -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-language"></i>
+                    <div>
+                        <div class="name">ChatGLM</div>
+                        <div class="desc">AI hội thoại đa ngôn ngữ Trung Quốc</div>
+                    </div>
+                </div>
+                <a href="https://chatglm.cn/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Kimi AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-star"></i>
+                    <div>
+                        <div class="name">Kimi AI</div>
+                        <div class="desc">AI hội thoại tiếng Trung mạnh mẽ</div>
+                    </div>
+                </div>
+                <a href="https://kimi.moonshot.cn/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- ZaloAI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-comment"></i>
+                    <div>
+                        <div class="name">ZaloAI</div>
+                        <div class="desc">AI tiếng Việt từ Zalo</div>
+                    </div>
+                </div>
+                <a href="https://zalo.ai/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Bing AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-brands fa-microsoft"></i>
+                    <div>
+                        <div class="name">Bing AI</div>
+                        <div class="desc">AI hội thoại tích hợp Bing Search</div>
+                    </div>
+                </div>
+                <a href="https://www.bing.com/chat" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+
+            <!-- AI tạo ảnh Free -->
+            <div class="group-title">AI tạo ảnh Free</div>
+            <!-- Bing Image Creator -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-image"></i>
+                    <div>
+                        <div class="name">Bing Image Creator</div>
+                        <div class="desc">Tạo ảnh AI miễn phí từ Microsoft (DALL·E)</div>
+                    </div>
+                </div>
+                <a href="https://www.bing.com/images/create" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Playground AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-palette"></i>
+                    <div>
+                        <div class="name">Playground AI</div>
+                        <div class="desc">Tạo ảnh AI miễn phí, nhiều style</div>
+                    </div>
+                </div>
+                <a href="https://playgroundai.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Leonardo AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-brush"></i>
+                    <div>
+                        <div class="name">Leonardo AI</div>
+                        <div class="desc">Tạo ảnh AI chất lượng cao, miễn phí giới hạn</div>
+                    </div>
+                </div>
+                <a href="https://leonardo.ai/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- CivitAI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-users"></i>
+                    <div>
+                        <div class="name">CivitAI</div>
+                        <div class="desc">Chia sẻ, tải model AI tạo ảnh miễn phí</div>
+                    </div>
+                </div>
+                <a href="https://civitai.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- BlueWillow -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-water"></i>
+                    <div>
+                        <div class="name">BlueWillow</div>
+                        <div class="desc">Tạo ảnh AI miễn phí, nhiều phong cách</div>
+                    </div>
+                </div>
+                <a href="https://www.bluewillow.ai/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Mage.space -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-hat-wizard"></i>
+                    <div>
+                        <div class="name">Mage.space</div>
+                        <div class="desc">Tạo ảnh AI miễn phí, hỗ trợ nhiều model</div>
+                    </div>
+                </div>
+                <a href="https://www.mage.space/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- InstantArt -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-bolt"></i>
+                    <div>
+                        <div class="name">InstantArt</div>
+                        <div class="desc">Tạo ảnh AI nhanh, miễn phí</div>
+                    </div>
+                </div>
+                <a href="https://instantart.io/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Ideogram -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-font"></i>
+                    <div>
+                        <div class="name">Ideogram</div>
+                        <div class="desc">Tạo ảnh AI, chữ nghệ thuật miễn phí</div>
+                    </div>
+                </div>
+                <a href="https://ideogram.ai/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Craiyon -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-pen-nib"></i>
+                    <div>
+                        <div class="name">Craiyon</div>
+                        <div class="desc">AI tạo ảnh miễn phí, đơn giản, vui nhộn</div>
+                    </div>
+                </div>
+                <a href="https://www.craiyon.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Stable Diffusion WebUI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-laptop"></i>
+                    <div>
+                        <div class="name">Stable Diffusion WebUI</div>
+                        <div class="desc">Tạo ảnh AI mã nguồn mở, miễn phí</div>
+                    </div>
+                </div>
+                <a href="https://stablediffusionweb.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+
+            <!-- AI tạo Video Free -->
+            <div class="group-title">AI tạo Video Free</div>
+            <!-- Pika Labs -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-film"></i>
+                    <div>
+                        <div class="name">Pika Labs</div>
+                        <div class="desc">Tạo video AI từ ảnh, ý tưởng miễn phí</div>
+                    </div>
+                </div>
+                <a href="https://pika.art/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Kaiber AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-video"></i>
+                    <div>
+                        <div class="name">Kaiber AI</div>
+                        <div class="desc">Tạo video AI sáng tạo, miễn phí giới hạn</div>
+                    </div>
+                </div>
+                <a href="https://kaiber.ai/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Runway Gen-2 -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-clapperboard"></i>
+                    <div>
+                        <div class="name">Runway Gen-2</div>
+                        <div class="desc">Tạo video AI từ text, ảnh, miễn phí giới hạn</div>
+                    </div>
+                </div>
+                <a href="https://app.runwayml.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Luma AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-cube"></i>
+                    <div>
+                        <div class="name">Luma AI</div>
+                        <div class="desc">Tạo video 3D, cảnh vật bằng AI miễn phí</div>
+                    </div>
+                </div>
+                <a href="https://lumalabs.ai/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Stable Video Diffusion -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-arrows-spin"></i>
+                    <div>
+                        <div class="name">Stable Video Diffusion</div>
+                        <div class="desc">Tạo video AI mã nguồn mở, miễn phí</div>
+                    </div>
+                </div>
+                <a href="https://stablediffusionweb.com/video" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- PixVerse -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-photo-film"></i>
+                    <div>
+                        <div class="name">PixVerse</div>
+                        <div class="desc">Tạo video AI từ text, ảnh miễn phí</div>
+                    </div>
+                </div>
+                <a href="https://pixverse.ai/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- HeyGen -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <div>
+                        <div class="name">HeyGen</div>
+                        <div class="desc">Tạo video AI avatar, thuyết trình miễn phí giới hạn</div>
+                    </div>
+                </div>
+                <a href="https://www.heygen.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Kapwing AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-scissors"></i>
+                    <div>
+                        <div class="name">Kapwing AI</div>
+                        <div class="desc">Tạo, chỉnh sửa video AI miễn phí</div>
+                    </div>
+                </div>
+                <a href="https://www.kapwing.com/ai-video-generator" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Animaker -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-person-chalkboard"></i>
+                    <div>
+                        <div class="name">Animaker</div>
+                        <div class="desc">Tạo video hoạt hình AI miễn phí</div>
+                    </div>
+                </div>
+                <a href="https://www.animaker.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- DeepBrain AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-brain"></i>
+                    <div>
+                        <div class="name">DeepBrain AI</div>
+                        <div class="desc">Tạo video AI avatar, thuyết trình miễn phí giới hạn</div>
+                    </div>
+                </div>
+                <a href="https://www.deepbrain.io/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+
+            <!-- AI soạn thảo / thuyết trình -->
+            <div class="group-title">AI soạn thảo / thuyết trình</div>
+            <!-- Notion AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-pen-fancy"></i>
+                    <div>
+                        <div class="name">Notion AI</div>
+                        <div class="desc">Hỗ trợ viết, tóm tắt, sáng tạo nội dung trong Notion</div>
+                    </div>
+                </div>
+                <a href="https://www.notion.so/product/ai" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- GrammarlyGO -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-spell-check"></i>
+                    <div>
+                        <div class="name">GrammarlyGO</div>
+                        <div class="desc">AI viết, chỉnh sửa, gợi ý nội dung tiếng Anh</div>
+                    </div>
+                </div>
+                <a href="https://www.grammarly.com/grammarlygo" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- QuillBot -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-feather"></i>
+                    <div>
+                        <div class="name">QuillBot</div>
+                        <div class="desc">AI diễn đạt lại, tóm tắt, kiểm tra đạo văn</div>
+                    </div>
+                </div>
+                <a href="https://quillbot.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Tome AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-chalkboard"></i>
+                    <div>
+                        <div class="name">Tome AI</div>
+                        <div class="desc">Tạo slide thuyết trình tự động bằng AI</div>
+                    </div>
+                </div>
+                <a href="https://tome.app/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Gamma App -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-display"></i>
+                    <div>
+                        <div class="name">Gamma App</div>
+                        <div class="desc">Tạo slide, tài liệu, website bằng AI</div>
+                    </div>
+                </div>
+                <a href="https://gamma.app/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+
+            <!-- AI viết văn bản -->
+            <div class="group-title">AI viết văn bản</div>
+            <!-- Jasper AI -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-pen-nib"></i>
+                    <div>
+                        <div class="name">Jasper AI</div>
+                        <div class="desc">AI viết nội dung marketing, blog, email chuyên nghiệp</div>
+                    </div>
+                </div>
+                <a href="https://www.jasper.ai/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Writesonic -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-keyboard"></i>
+                    <div>
+                        <div class="name">Writesonic</div>
+                        <div class="desc">AI viết bài, tạo nội dung đa dạng, hỗ trợ nhiều ngôn ngữ</div>
+                    </div>
+                </div>
+                <a href="https://writesonic.com/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Rytr -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-file-alt"></i>
+                    <div>
+                        <div class="name">Rytr</div>
+                        <div class="desc">AI viết văn bản, ý tưởng, mô tả sản phẩm nhanh chóng</div>
+                    </div>
+                </div>
+                <a href="https://rytr.me/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+            <!-- Copy.ai -->
+            <div class="software">
+                <div class="info">
+                    <i class="fa-solid fa-copy"></i>
+                    <div>
+                        <div class="name">Copy.ai</div>
+                        <div class="desc">AI tạo nội dung quảng cáo, mô tả, email, blog</div>
+                    </div>
+                </div>
+                <a href="https://www.copy.ai/" target="_blank">
+                    <button class="download-btn">Truy cập</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+    // Tìm kiếm phần mềm AI
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('software-search-input');
+        const softwareList = document.getElementById('software-list');
+        const groupTitles = softwareList.querySelectorAll('.group-title');
+        searchInput.addEventListener('input', function() {
+            const keyword = searchInput.value.trim().toLowerCase();
+            const softwares = softwareList.querySelectorAll('.software');
+            softwares.forEach(function(item) {
+                const name = item.querySelector('.name')?.textContent?.toLowerCase() || '';
+                if (name.includes(keyword)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            groupTitles.forEach(function(title) {
+                let next = title.nextElementSibling;
+                let hasVisible = false;
+                while (next && !next.classList.contains('group-title')) {
+                    if (next.classList.contains('software') && next.style.display !== 'none') {
+                        hasVisible = true;
+                        break;
+                    }
+                    next = next.nextElementSibling;
+                }
+                title.style.display = hasVisible ? '' : 'none';
+            });
+        });
+    });
+    </script>
+</body>
+</html>

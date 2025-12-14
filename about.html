@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MK SOF - Giới thiệu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f4f4f4 100%);
+            margin: 0;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 100vw;
+            width: 100vw;
+            margin: 0;
+            background: #fff;
+            padding: 32px 0;
+            border-radius: 0;
+            box-shadow: none;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: #2d3a4b;
+            margin-bottom: 28px;
+            letter-spacing: 1px;
+        }
+        .tab-menu {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+            gap: 8px;
+        }
+        .tab-btn {
+            padding: 10px 28px;
+            border: none;
+            background: #e0e7ff;
+            color: #2563eb;
+            font-size: 1.08rem;
+            font-weight: 500;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            outline: none;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tab-btn.active, .tab-btn:focus {
+            background: #fff;
+            color: #22223b;
+            border-bottom: 2px solid #fff;
+            box-shadow: 0 -2px 8px #e0e7ff60;
+            z-index: 2;
+        }
+        /* ...existing code... */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MK SOF - Công cụ tiện ích & lệnh tối ưu</h1>
+        <div class="tab-menu">
+            <a class="tab-btn" href="software.html"><i class="fa-solid fa-box"></i> Phần mềm</a>
+            <a class="tab-btn" href="cmd.html"><i class="fa-solid fa-terminal"></i> Lệnh tối ưu</a>
+            <a class="tab-btn" href="browser-tools.html"><i class="fa-solid fa-puzzle-piece"></i> Tiện ích trình duyệt</a>
+            <a class="tab-btn" href="github-hot.html"><i class="fa-brands fa-github"></i> GitHub hay</a>
+            <a class="tab-btn active" href="dev-tools.html"><i class="fa-solid fa-wrench"></i> Dev tools</a>
+            <a class="tab-btn" href="about.html"><i class="fa-solid fa-circle-info"></i> Giới thiệu</a>
+        </div>
+        <div id="about-tab" style="max-width:700px;margin:0 auto;">
+            <div style="background:#f6f8fa;border-radius:10px;padding:32px 28px;margin-top:18px;box-shadow:0 2px 8px #e0e7ff40;">
+                <h2 style="color:#2563eb;margin-top:0;">Giới thiệu</h2>
+                <p><b>MK SOF</b> là trang tổng hợp các phần mềm phổ biến và các lệnh tối ưu hệ thống dành cho Windows, giúp bạn cài đặt nhanh phần mềm và thao tác tối ưu máy tính dễ dàng.</p>
+                <ul style="color:#374151;font-size:1.05rem;line-height:1.7;">
+                    <li><b>Tìm kiếm phần mềm</b> nhanh chóng, tải về chỉ với 1 click.</li>
+                    <li><b>Tham khảo các lệnh CMD/PowerShell</b> hữu ích cho việc bảo trì, sửa lỗi, tối ưu máy tính.</li>
+                    <li><b>Giao diện đơn giản, dễ sử dụng</b>, phù hợp cho mọi đối tượng.</li>
+                </ul>
+                <hr style="margin:18px 0;">
+                <div style="color:#6366f1;">
+                    <b>Tác giả:</b> <span>MINH KHOA THAO VY</span><br>
+                    <b>Phiên bản:</b> <span>1.0</span><br>
+                    <b>Liên hệ:</b> <a href="mailto:your-email@example.com" style="color:#2563eb;text-decoration:underline;">your-email@example.com</a>
+                </div>
+                <hr style="margin:18px 0;">
+                <div style="font-size:0.98rem;color:#6b7280;">
+                    <b>Hướng dẫn:</b> Chọn tab <b>Phần mềm</b> để tìm và tải phần mềm, hoặc tab <b>Lệnh tối ưu</b> để xem các lệnh hữu ích cho Windows.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

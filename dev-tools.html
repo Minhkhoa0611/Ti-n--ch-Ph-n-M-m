@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>MK SOF - Công cụ dev online hay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f4f4f4 100%);
+            margin: 0;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 100vw;
+            width: 100vw;
+            margin: 0;
+            background: #fff;
+            padding: 32px 0;
+            border-radius: 0;
+            box-shadow: none;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: #2d3a4b;
+            margin-bottom: 24px;
+        }
+        .tab-menu {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+            gap: 8px;
+        }
+        .tab-btn {
+            padding: 10px 28px;
+            border: none;
+            background: #e0e7ff;
+            color: #2563eb;
+            font-size: 1.08rem;
+            font-weight: 500;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            outline: none;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tab-btn.active, .tab-btn:focus {
+            background: #fff;
+            color: #22223b;
+            border-bottom: 2px solid #fff;
+            box-shadow: 0 -2px 8px #e0e7ff60;
+            z-index: 2;
+        }
+        .tools-list {
+            margin-top: 12px;
+            width: 100vw;
+            max-width: 100vw;
+            padding: 0 24px 24px 24px;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 18px;
+        }
+        .tool-block {
+            background: #f6f8fa;
+            border-radius: 10px;
+            padding: 18px 16px;
+            box-shadow: 0 1px 4px #e0e7ff40;
+            transition: box-shadow 0.2s, transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+        .tool-block:hover {
+            box-shadow: 0 4px 16px #a5b4fc60;
+            transform: translateY(-2px) scale(1.01);
+        }
+        .tool-block b {
+            color: #2563eb;
+            font-size: 1.08rem;
+            margin-bottom: 4px;
+        }
+        .tool-block a {
+            color: #0d9488;
+            text-decoration: underline;
+            font-weight: 500;
+            margin-top: 6px;
+            width: fit-content;
+        }
+        .tool-desc {
+            color: #64748b;
+            font-size: 0.98rem;
+            margin-bottom: 4px;
+        }
+        @media (max-width: 900px) {
+            .tools-list {
+                grid-template-columns: 1fr;
+                padding: 0 4px 12px 4px;
+            }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 8px 0; }
+            .tab-menu { flex-direction: column; gap: 4px; }
+            .tab-btn { width: 100%; }
+            .tools-list { padding: 0 2vw 12px 2vw; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MK SOF - Công cụ dev online hay</h1>
+        <div class="tab-menu">
+            <a class="tab-btn" href="software.html"><i class="fa-solid fa-box"></i> Phần mềm</a>
+            <a class="tab-btn" href="cmd.html"><i class="fa-solid fa-terminal"></i> Lệnh tối ưu</a>
+            <a class="tab-btn" href="browser-tools.html"><i class="fa-solid fa-puzzle-piece"></i> Tiện ích trình duyệt</a>
+            <a class="tab-btn" href="github-hot.html"><i class="fa-brands fa-github"></i> GitHub hay</a>
+            <a class="tab-btn active" href="dev-tools.html"><i class="fa-solid fa-wrench"></i> Dev tools</a>
+            <a class="tab-btn" href="about.html"><i class="fa-solid fa-circle-info"></i> Giới thiệu</a>
+        </div>
+        <div class="tools-list">
+            <div class="tool-block">
+                <b><i class="fa-solid fa-code"></i> CodePen</b>
+                <div class="tool-desc">Chạy thử HTML/CSS/JS trực tuyến, chia sẻ code nhanh.</div>
+                <a href="https://codepen.io/" target="_blank">Truy cập CodePen</a>
+            </div>
+            <div class="tool-block">
+                <b><i class="fa-solid fa-code"></i> JSFiddle</b>
+                <div class="tool-desc">Test code JavaScript, HTML, CSS online, lưu và chia sẻ dễ dàng.</div>
+                <a href="https://jsfiddle.net/" target="_blank">Truy cập JSFiddle</a>
+            </div>
+            <div class="tool-block">
+                <b><i class="fa-solid fa-code"></i> StackBlitz</b>
+                <div class="tool-desc">IDE online cho Angular, React, Vue, Node.js, TypeScript...</div>
+                <a href="https://stackblitz.com/" target="_blank">Truy cập StackBlitz</a>
+            </div>
+            <div class="tool-block">
+                <b><i class="fa-solid fa-code"></i> Replit</b>
+                <div class="tool-desc">Chạy code nhiều ngôn ngữ (Python, C, Java, JS...) trên web.</div>
+                <a href="https://replit.com/" target="_blank">Truy cập Replit</a>
+            </div>
+            <div class="tool-block">
+                <b><i class="fa-solid fa-code"></i> OnlineGDB</b>
+                <div class="tool-desc">Trình biên dịch & debug C/C++/Java/Python online.</div>
+                <a href="https://www.onlinegdb.com/" target="_blank">Truy cập OnlineGDB</a>
+            </div>
+            <div class="tool-block">
+                <b><i class="fa-solid fa-code"></i> Python Tutor</b>
+                <div class="tool-desc">Mô phỏng trực quan từng bước thực thi code Python/C/JS/Java...</div>
+                <a href="https://pythontutor.com/" target="_blank">Truy cập Python Tutor</a>
+            </div>
+            <div class="tool-block">
+                <b><i class="fa-solid fa-database"></i> JSON Formatter & Validator</b>
+                <div class="tool-desc">Kiểm tra, làm đẹp, validate JSON online.</div>
+                <a href="https://jsonformatter.curiousconcept.com/" target="_blank">Truy cập JSON Formatter</a>
+            </div>
+            <div class="tool-block">
+                <b><i class="fa-solid fa-database"></i> JSON Editor Online</b>
+                <div class="tool-desc">Chỉnh sửa, so sánh, chuyển đổi JSON trực tuyến.</div>
+                <a href="https://jsoneditoronline.org/" target="_blank">Truy cập JSON Editor Online</a>
+            </div>
+            <div class="tool-block">
+                <b><i class="fa-solid fa-bolt"></i> Regex101</b>
+                <div class="tool-desc">Kiểm thử, giải thích biểu thức chính quy (regex) nhiều ngôn ngữ.</div>
+                <a href="https://regex101.com/" target="_blank">Truy cập Regex101</a>
+            </div>
+            <div class="tool-block">
+                <b><i class="fa-solid fa-image"></i> TinyPNG</b>
+                <div class="tool-desc">Nén ảnh PNG/JPG online, giảm dung lượng mà không giảm chất lượng.</div>
+                <a href="https://tinypng.com/" target="_blank">Truy cập TinyPNG</a>
+            </div>
+            <div class="tool-block">
+                <b><i class="fa-solid fa-palette"></i> Coolors</b>
+                <div class="tool-desc">Tạo, khám phá bảng màu đẹp cho UI/UX, export nhanh.</div>
+                <a href="https://coolors.co/" target="_blank">Truy cập Coolors</a>
+            </div>
+            <div class="tool-block">
+                <b><i class="fa-solid fa-arrows-rotate"></i> Convertio</b>
+                <div class="tool-desc">Chuyển đổi định dạng file (ảnh, tài liệu, audio, video, font...)</div>
+                <a href="https://convertio.co/vn/" target="_blank">Truy cập Convertio</a>
+            </div>
+            <div class="tool-block">
+                <b><i class="fa-solid fa-terminal"></i> ReqBin</b>
+                <div class="tool-desc">Test API HTTP request (GET, POST, PUT, DELETE...) trực tuyến.</div>
+                <a href="https://reqbin.com/" target="_blank">Truy cập ReqBin</a>
+            </div>
+            <div class="tool-block">
+                <b><i class="fa-solid fa-terminal"></i> Postman Web</b>
+                <div class="tool-desc">Test API, quản lý request, mock server, automation... trên web.</div>
+                <a href="https://web.postman.co/" target="_blank">Truy cập Postman Web</a>
+            </div>
+            <div class="tool-block">
+                <b><i class="fa-solid fa-lock"></i> CyberChef</b>
+                <div class="tool-desc">Công cụ mã hóa, giải mã, chuyển đổi, phân tích dữ liệu mạnh mẽ.</div>
+                <a href="https://gchq.github.io/CyberChef/" target="_blank">Truy cập CyberChef</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

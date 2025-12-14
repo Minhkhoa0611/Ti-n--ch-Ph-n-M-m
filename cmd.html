@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MK SOF - Lệnh tối ưu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0e7ff 0%, #f4f4f4 100%);
+            margin: 0;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 100vw;
+            width: 100vw;
+            margin: 0;
+            background: #fff;
+            padding: 32px 0;
+            border-radius: 0;
+            box-shadow: none;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: #2d3a4b;
+            margin-bottom: 28px;
+            letter-spacing: 1px;
+        }
+        .tab-menu {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+            gap: 8px;
+        }
+        .tab-btn {
+            padding: 10px 28px;
+            border: none;
+            background: #e0e7ff;
+            color: #2563eb;
+            font-size: 1.08rem;
+            font-weight: 500;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            outline: none;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tab-btn.active, .tab-btn:focus {
+            background: #fff;
+            color: #22223b;
+            border-bottom: 2px solid #fff;
+            box-shadow: 0 -2px 8px #e0e7ff60;
+            z-index: 2;
+        }
+        .group-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2563eb;
+            margin: 18px 0 6px 0;
+            padding: 8px 0 2px 0;
+            border-bottom: 1px solid #e0e7ff;
+            background: #f1f5ff;
+            border-radius: 6px;
+            text-align: left;
+        }
+        .cmd-list {
+            background: #f6f8fa;
+            border-radius: 10px;
+            padding: 18px;
+            box-shadow: 0 2px 8px #e0e7ff50;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .cmd-list:hover {
+            box-shadow: 0 4px 16px #a5b4fc60;
+            transform: translateY(-2px) scale(1.01);
+        }
+        .cmd-item {
+            background: #fff;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 4px #e0e7ff40;
+            transition: background 0.2s;
+        }
+        .cmd-item:hover {
+            background: #f1f5ff;
+        }
+        .cmd-item b {
+            color: #2563eb;
+        }
+        .cmd-item code {
+            background: #e0e7ff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 8px 0; }
+            .tab-menu { flex-direction: column; gap: 4px; }
+            .tab-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MK SOF - Công cụ tiện ích & lệnh tối ưu</h1>
+        <div class="tab-menu">
+            <a class="tab-btn" href="software.html"><i class="fa-solid fa-box"></i> Phần mềm</a>
+            <a class="tab-btn" href="cmd.html"><i class="fa-solid fa-terminal"></i> Lệnh tối ưu</a>
+            <a class="tab-btn" href="browser-tools.html"><i class="fa-solid fa-puzzle-piece"></i> Tiện ích trình duyệt</a>
+            <a class="tab-btn" href="github-hot.html"><i class="fa-brands fa-github"></i> GitHub hay</a>
+            <a class="tab-btn active" href="dev-tools.html"><i class="fa-solid fa-wrench"></i> Dev tools</a>
+            <a class="tab-btn" href="about.html"><i class="fa-solid fa-circle-info"></i> Giới thiệu</a>
+        </div>
+        <div class="cmd-list">
+            <!-- Thủ thuật tối ưu máy tính -->
+            <div class="group-title">Một số câu lệnh tối ưu máy tính (chạy trong CMD/PowerShell)</div>
+            <div style="background:#f6f8fa;border-radius:8px;padding:18px 18px 8px 18px;margin-bottom:24px;font-size:1rem;">
+                <b>Hướng dẫn:</b> <span style="color:#2563eb">Bôi đen lệnh cần dùng, nhấn <kbd>Ctrl</kbd>+<kbd>C</kbd> để copy, sau đó dán vào cửa sổ <b>CMD</b> hoặc <b>PowerShell</b> (chạy với quyền Admin nếu cần).</span>
+                <br><br>
+                <b style="color:#2563eb;">🧹 Dọn dẹp & Tối ưu hệ thống</b><br>
+                <b>1. Dọn rác hệ thống (Disk Cleanup):</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">cleanmgr</pre>
+                <b>2. Xóa file tạm thời:</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">del /s /q %temp%\*</pre>
+                <b>3. Xóa file tạm trong thư mục Windows:</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">del /s /q C:\Windows\Temp\*</pre>
+                <b>4. Mở thư mục Startup (quản lý ứng dụng khởi động):</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">shell:startup</pre>
+                <b>5. Tắt các ứng dụng khởi động cùng Windows (msconfig):</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">msconfig</pre>
+                <br>
+                <b style="color:#2563eb;">🛠️ Sửa lỗi & Kiểm tra hệ thống</b><br>
+                <b>6. Kiểm tra và sửa lỗi ổ đĩa:</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">chkdsk /f /r</pre>
+                <b>7. Sửa file hệ thống Windows:</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">sfc /scannow</pre>
+                <b>8. Quét và sửa lỗi Windows Update:</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">DISM /Online /Cleanup-Image /RestoreHealth</pre>
+                <b>9. Kiểm tra trạng thái ổ cứng (SMART):</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">wmic diskdrive get status</pre>
+                <br>
+                <b style="color:#2563eb;">📋 Thông tin hệ thống & driver</b><br>
+                <b>10. Xem thông tin hệ thống:</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">systeminfo</pre>
+                <b>11. Xem danh sách driver đã cài:</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">driverquery</pre>
+                <br>
+                <b style="color:#2563eb;">⚙️ Quản lý tiến trình</b><br>
+                <b>12. Xem các tiến trình đang chạy:</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">tasklist</pre>
+                <b>13. Tắt tiến trình (ví dụ: notepad.exe):</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">taskkill /IM notepad.exe /F</pre>
+                <br>
+                <b style="color:#2563eb;">🌐 Mạng & Internet</b><br>
+                <b>14. Xem địa chỉ IP máy tính:</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">ipconfig</pre>
+                <b>15. Xem chi tiết mạng (IP, Gateway, DNS...):</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">ipconfig /all</pre>
+                <b>16. Xóa cache DNS:</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">ipconfig /flushdns</pre>
+                <b>17. Kiểm tra kết nối mạng tới google.com:</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">ping google.com</pre>
+                <b>18. Kiểm tra tốc độ mạng tới 8.8.8.8:</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">ping 8.8.8.8 -t</pre>
+                <b>19. Xem các cổng mạng đang mở:</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">netstat -an</pre>
+                <b>20. Đặt lại card mạng (reset network):</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">netsh int ip reset</pre>
+                <b>21. Đặt lại Winsock:</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">netsh winsock reset</pre>
+                <b>22. Tắt bật card mạng (ví dụ: Ethernet):</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">netsh interface set interface "Ethernet" admin=disable</pre>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">netsh interface set interface "Ethernet" admin=enable</pre>
+                <b>23. Kiểm tra tốc độ mạng (PowerShell):</b>
+                <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">Test-NetConnection google.com</pre>
+                <br>
+                <b style="color:#2563eb;">💾 Quản lý ổ đĩa</b><br>
+                <b>24. Mở Disk Management:</b>
+            <b>25. Xem dung lượng ổ đĩa:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">wmic logicaldisk get size,freespace,caption</pre>
+            <b>26. Chống phân mảnh ổ đĩa:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">defrag C: /O</pre>
+            <br>
+            <b style="color:#2563eb;">👤 Quản lý tài khoản người dùng</b><br>
+            <b>27. Xem danh sách user:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">net user</pre>
+            <b>28. Đổi mật khẩu user (ví dụ: admin):</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">net user admin *</pre>
+            <b>29. Tạo user mới (ví dụ: newuser):</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">net user newuser /add</pre>
+            <b>30. Thêm user vào nhóm Administrators:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">net localgroup administrators newuser /add</pre>
+            <br>
+            <b style="color:#2563eb;">📋 Clipboard & tiện ích nhỏ</b><br>
+            <b>31. Xem lịch sử clipboard (Windows 10+):</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">Windows + V</pre>
+            <b>32. Chụp màn hình nhanh:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">Windows + Shift + S</pre>
+            <b>33. Mở Task Manager:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">Ctrl + Shift + Esc</pre>
+            <br>
+            <b style="color:#2563eb;">🔄 Windows Update & bảo mật</b><br>
+            <b>34. Kiểm tra cập nhật Windows:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">ms-settings:windowsupdate</pre>
+            <b>35. Tắt Windows Defender tạm thời (PowerShell Admin):</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">Set-MpPreference -DisableRealtimeMonitoring $true</pre>
+            <b>36. Bật lại Windows Defender:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">Set-MpPreference -DisableRealtimeMonitoring $false</pre>
+            <br>
+            <b style="color:#2563eb;">🪟 Một số lệnh mở nhanh ứng dụng hệ thống</b><br>
+            <b>37. Mở Control Panel:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">control</pre>
+            <b>38. Mở Device Manager:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">devmgmt.msc</pre>
+            <b>39. Mở Services:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">services.msc</pre>
+            <b>40. Mở Registry Editor:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">regedit</pre>
+            <b>41. Mở Group Policy Editor (Windows Pro):</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">gpedit.msc</pre>
+            <br>
+            <b style="color:#2563eb;">🖨️ Quản lý in ấn</b><br>
+            <b>42. Mở hàng đợi máy in:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">control printers</pre>
+            <b>43. Xóa tất cả lệnh in bị kẹt:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">net stop spooler &amp;&amp; del /Q /F %systemroot%\System32\spool\PRINTERS\* &amp;&amp; net start spooler</pre>
+            <br>
+            <b style="color:#2563eb;">🧑‍💻 Một số lệnh PowerShell hữu ích</b><br>
+            <b>44. Xem danh sách phần mềm đã cài:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">Get-WmiObject -Class Win32_Product | Select-Object Name, Version</pre>
+            <b>45. Xem thông tin pin laptop:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">powercfg /batteryreport /output %USERPROFILE%\Desktop\battery-report.html</pre>
+            <b>46. Xem thông tin mạng WiFi đã lưu:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">netsh wlan show profiles</pre>
+            <b>47. Xem mật khẩu WiFi đã lưu (thay tên_wifi):</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">netsh wlan show profile name="tên_wifi" key=clear</pre>
+            <br>
+            <b style="color:#2563eb;">🧰 Khác</b><br>
+            <b>48. Mở cửa sổ Run:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">Windows + R</pre>
+            <b>49. Mở This PC (File Explorer):</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">Windows + E</pre>
+            <b>50. Khóa nhanh máy tính:</b>
+            <pre style="background:#e0e7ff;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">Windows + L</pre>
+            <br>
+            <!-- Nhóm lệnh chạy server nội bộ -->
+            <div class="group-title" style="color:#7c3aed;background:#ede9fe;border-color:#c4b5fd;">
+                🌐 Chạy server nội bộ (Local server)
+            </div>
+            <div style="background:#f3f0ff;border:1px solid #c4b5fd;color:#7c3aed;border-radius:8px;padding:14px 18px 8px 18px;margin-bottom:24px;font-size:1rem;">
+                <b>Lưu ý:</b> Các lệnh này giúp tạo server nội bộ để phát triển web, kiểm thử ứng dụng, chia sẻ file...<br><br>
+                <b style="color:#7c3aed;">1. Python 3 - Chạy HTTP server tại thư mục hiện tại (port 8000):</b>
+                <pre style="background:#ddd6fe;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">python -m http.server 8000</pre>
+                <b style="color:#7c3aed;">2. Python 2 - Chạy SimpleHTTPServer (port 8000):</b>
+                <pre style="background:#ddd6fe;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">python -m SimpleHTTPServer 8000</pre>
+                <b style="color:#7c3aed;">3. PHP - Chạy server tại thư mục hiện tại (port 8000):</b>
+                <pre style="background:#ddd6fe;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">php -S localhost:8000</pre>
+                <b style="color:#7c3aed;">4. Node.js - Chạy server với http-server (cần cài đặt http-server):</b>
+                <pre style="background:#ddd6fe;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">npx http-server -p 8000</pre>
+                <b style="color:#7c3aed;">5. Powershell - Chia sẻ thư mục qua HTTP (port 8080):</b>
+                <pre style="background:#ddd6fe;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">powershell -Command "Start-Process powershell -ArgumentList '-NoExit','-Command','cd %cd%; python -m http.server 8080'"</pre>
+            </div>
+            <!-- Nhóm lệnh kích hoạt tính năng ẩn -->
+            <div class="group-title" style="color:#0d9488;background:#e0f2f1;border-color:#5eead4;">
+                🛸 Kích hoạt tính năng ẩn của Windows
+            </div>
+            <div style="background:#e0f7fa;border:1px solid #5eead4;color:#0d9488;border-radius:8px;padding:14px 18px 8px 18px;margin-bottom:24px;font-size:1rem;">
+                <b>Lưu ý:</b> Một số lệnh cần quyền Admin, có thể cần khởi động lại máy để áp dụng.<br><br>
+                <b style="color:#0d9488;">1. Hiện file/thư mục ẩn trong Explorer:</b>
+                <pre style="background:#ccfbf1;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v Hidden /t REG_DWORD /d 1 /f</pre>
+                <b style="color:#0d9488;">2. Hiện file hệ thống bảo vệ:</b>
+                <pre style="background:#ccfbf1;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v ShowSuperHidden /t REG_DWORD /d 1 /f</pre>
+                <b style="color:#0d9488;">3. Bật GodMode (tạo thư mục GodMode):</b>
+                <pre style="background:#ccfbf1;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">mkdir "%USERPROFILE%\Desktop\GodMode.{ED7BA470-8E54-465E-825C-99712043E01C}"</pre>
+                <b style="color:#0d9488;">4. Bật Clipboard History (Windows 10+):</b>
+                <pre style="background:#ccfbf1;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">ms-settings:clipboard</pre>
+                <b style="color:#0d9488;">5. Bật Dark Mode cho Windows:</b>
+                <pre style="background:#ccfbf1;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v AppsUseLightTheme /t REG_DWORD /d 0 /f</pre>
+                <b style="color:#0d9488;">6. Bật tính năng Sandbox (Windows Pro):</b>
+                <pre style="background:#ccfbf1;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">dism /Online /Enable-Feature /FeatureName:"Containers-DisposableClientVM" /All</pre>
+                <b style="color:#0d9488;">7. Bật Hyper-V (ảo hóa, Windows Pro):</b>
+                <pre style="background:#ccfbf1;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">dism /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V</pre>
+                <b style="color:#0d9488;">8. Bật tính năng Telnet Client:</b>
+                <pre style="background:#ccfbf1;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">dism /online /Enable-Feature /FeatureName:TelnetClient</pre>
+                <b style="color:#0d9488;">9. Bật tính năng .NET Framework 3.5:</b>
+                <pre style="background:#ccfbf1;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;">dism /online /enable-feature /featurename:NetFx3 /all</pre>
+            </div>
+            <!-- Nhóm lệnh nguy hiểm -->
+            <div class="group-title" style="color:#fff;background:#e11d48;border-color:#e11d48;">
+                ⚠️ <span style="color:#fff;">Lệnh NGUY HIỂM - Cẩn thận khi sử dụng!</span>
+            </div>
+            <div style="background:#fff0f3;border:1px solid #e11d48;color:#e11d48;border-radius:8px;padding:14px 18px 8px 18px;margin-bottom:24px;font-size:1rem;">
+                <b>CẢNH BÁO:</b> <span style="color:#b91c1c;">Các lệnh dưới đây có thể gây mất dữ liệu, lỗi hệ thống hoặc không thể phục hồi. <u>Chỉ sử dụng khi bạn hiểu rõ hậu quả!</u></span>
+                <br><br>
+                <b style="color:#e11d48;">❌ Format ổ đĩa (XÓA TOÀN BỘ DỮ LIỆU Ổ ĐĨA!)</b><br>
+                <b>1. Format ổ D:</b>
+                <pre style="background:#ffe4e6;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;color:#b91c1c;">format D: /fs:ntfs /q</pre>
+                <b style="color:#e11d48;">❌ Xóa user khỏi máy tính</b><br>
+                <b>2. Xóa user (ví dụ: nguyenvanA):</b>
+                <pre style="background:#ffe4e6;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;color:#b91c1c;">net user nguyenvanA /delete</pre>
+                <b style="color:#e11d48;">❌ Xóa file hệ thống (cực kỳ nguy hiểm!)</b><br>
+                <b>3. Xóa toàn bộ file trong System32:</b>
+                <pre style="background:#ffe4e6;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;color:#b91c1c;">del /f /s /q C:\Windows\System32\*</pre>
+                <b style="color:#e11d48;">❌ Tắt máy/tự động khởi động lại</b><br>
+                <b>4. Tắt máy ngay lập tức:</b>
+                <pre style="background:#ffe4e6;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;color:#b91c1c;">shutdown /s /f /t 0</pre>
+                <b>5. Khởi động lại ngay lập tức:</b>
+                <pre style="background:#ffe4e6;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;color:#b91c1c;">shutdown /r /f /t 0</pre>
+                <b style="color:#e11d48;">❌ Xóa phân vùng ổ đĩa (mất hết dữ liệu!)</b><br>
+                <b>6. Xóa phân vùng qua diskpart:</b>
+                <pre style="background:#ffe4e6;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;color:#b91c1c;">diskpart
+list disk
+select disk 1
+clean
+exit</pre>
+                <b style="color:#e11d48;">❌ Gỡ cài đặt phần mềm hàng loạt (PowerShell)</b><br>
+                <b>7. Gỡ tất cả app cài từ Store (Windows 10+):</b>
+                <pre style="background:#ffe4e6;border-radius:6px;padding:8px 12px;overflow:auto;user-select:all;color:#b91c1c;">Get-AppxPackage | Remove-AppxPackage</pre>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
