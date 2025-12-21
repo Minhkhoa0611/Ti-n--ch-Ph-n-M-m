@@ -154,6 +154,20 @@
     </style>
 </head>
 <body>
+    <!-- Modal quét bảo mật -->
+    <div id="scan-modal" style="display:none;position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(44,62,80,0.18);backdrop-filter:blur(2px);align-items:center;justify-content:center;">
+        <div id="scan-modal-content" style="background:#fff;padding:36px 32px 28px 32px;border-radius:14px;box-shadow:0 8px 32px #6366f140;display:flex;flex-direction:column;align-items:center;min-width:260px;animation:fadeIn .2s;">
+            <i id="scan-modal-icon" class="fa-solid fa-shield-halved fa-2x" style="color:#2563eb;margin-bottom:18px;animation:spin 1.2s linear infinite;"></i>
+            <div id="scan-modal-title" style="font-size:1.15rem;font-weight:500;color:#22223b;margin-bottom:8px;">Đang quét bảo mật...</div>
+            <div id="scan-modal-desc" style="font-size:0.98rem;color:#6b7280;">Vui lòng chờ trong giây lát</div>
+        </div>
+    </div>
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+        }
+    </style>
     <div class="container">
         <div class="tab-menu">
             <a class="tab-btn" href="index.html"><i class="fa-solid fa-box"></i> Phần mềm</a>
@@ -914,6 +928,51 @@
                     next = next.nextElementSibling;
                 }
                 title.style.display = hasVisible ? '' : 'none';
+            });
+        });
+        // Quét bảo mật trước khi tải
+        const scanModal = document.getElementById('scan-modal');
+        const scanModalIcon = document.getElementById('scan-modal-icon');
+        const scanModalTitle = document.getElementById('scan-modal-title');
+        const scanModalDesc = document.getElementById('scan-modal-desc');
+        document.querySelectorAll('.download-btn').forEach(function(btn) {
+            const a = btn.closest('a');
+            if (!a) return;
+            btn.addEventListener('click', function(e) {
+                if (btn.dataset.scanned === '1') return;
+                e.preventDefault();
+                // Hiện modal quét
+                scanModal.style.display = 'flex';
+                scanModalIcon.className = 'fa-solid fa-shield-halved fa-2x';
+                scanModalIcon.style.color = '#2563eb';
+                scanModalIcon.style.animation = 'spin 1.2s linear infinite';
+                scanModalTitle.textContent = 'Đang quét bảo mật...';
+                scanModalDesc.textContent = 'Vui lòng chờ trong giây lát';
+                // Quét giả lập 2.2s
+                setTimeout(function() {
+                    // Hiện trạng thái an toàn
+                    scanModalIcon.className = 'fa-solid fa-circle-check fa-2x';
+                    scanModalIcon.style.color = '#22c55e';
+                    scanModalIcon.style.animation = '';
+                    scanModalTitle.textContent = 'An toàn! Bắt đầu tải về...';
+                    scanModalDesc.textContent = '';
+                    // Đợi 1s rồi tải file
+                    setTimeout(function() {
+                        scanModal.style.display = 'none';
+                        btn.dataset.scanned = '1';
+                        if (a.target === '_blank') {
+                            window.open(a.href, '_blank');
+                        } else {
+                            const tmpA = document.createElement('a');
+                            tmpA.href = a.href;
+                            if (a.hasAttribute('download')) tmpA.setAttribute('download', '');
+                            document.body.appendChild(tmpA);
+                            tmpA.click();
+                            document.body.removeChild(tmpA);
+                        }
+                        setTimeout(()=>{btn.dataset.scanned = '';}, 1000);
+                    }, 1000);
+                }, 2200);
             });
         });
     });

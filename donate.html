@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Ủng hộ - Donate</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #232526 0%, #414345 100%);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            margin: 0;
+            padding: 0;
+        }
+        .donate-box {
+            background: rgba(40, 48, 72, 0.85);
+            border-radius: 22px;
+            padding: 38px 38px 32px 38px;
+            max-width: 410px;
+            width: 100%;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+            backdrop-filter: blur(8px);
+            border: 1.5px solid rgba(255,255,255,0.12);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .donate-box::before {
+            content: "";
+            position: absolute;
+            top: -60px; left: -60px;
+            width: 180px; height: 180px;
+            background: radial-gradient(circle, #6366f1 0%, #23252600 80%);
+            opacity: 0.25;
+            z-index: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 18px;
+            letter-spacing: 1.5px;
+            font-size: 2.1rem;
+            font-weight: 700;
+            text-shadow: 0 2px 12px #23252680;
+        }
+        .donate-box h2 {
+            color: #60a5fa;
+            margin-top: 0;
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+            z-index: 1;
+            position: relative;
+        }
+        .bank-info {
+            font-size: 1.09rem;
+            color: #e0e7ff;
+            margin-bottom: 18px;
+            z-index: 1;
+            position: relative;
+        }
+        .bank-info b {
+            color: #a5b4fc;
+            font-weight: 700;
+        }
+        .qr-img {
+            margin: 18px 0 10px 0;
+            background: rgba(255,255,255,0.08);
+            border-radius: 16px;
+            box-shadow: 0 2px 12px #6366f140;
+            padding: 14px;
+            display: inline-block;
+            transition: transform 0.18s;
+        }
+        .qr-img:hover {
+            transform: scale(1.04) rotate(-2deg);
+            box-shadow: 0 4px 24px #6366f180;
+        }
+        .copy-btn {
+            background: linear-gradient(90deg, #6366f1 60%, #60a5fa 100%);
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            padding: 8px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            margin-left: 8px;
+            transition: background 0.18s, transform 0.12s;
+            box-shadow: 0 2px 8px #6366f140;
+            outline: none;
+            position: relative;
+        }
+        .copy-btn:active {
+            transform: scale(0.97);
+        }
+        .copy-btn:hover {
+            background: linear-gradient(90deg, #4f46e5 60%, #2563eb 100%);
+            box-shadow: 0 4px 16px #6366f180;
+        }
+        .thanks {
+            color: #a5b4fc;
+            margin-top: 22px;
+            font-size: 1.09rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            z-index: 1;
+            position: relative;
+        }
+        .vietqr-tip {
+            color: #cbd5e1;
+            font-size: 0.99rem;
+            margin-top: 2px;
+            margin-bottom: 0;
+            z-index: 1;
+            position: relative;
+        }
+        /* Toast notification */
+        .toast {
+            visibility: hidden;
+            min-width: 180px;
+            background: linear-gradient(90deg, #6366f1 60%, #60a5fa 100%);
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 12px 18px;
+            position: fixed;
+            z-index: 9999;
+            left: 50%;
+            bottom: 38px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            transform: translateX(-50%);
+            box-shadow: 0 4px 24px #6366f180;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        @media (max-width: 600px) {
+            .donate-box {
+                padding: 22px 6vw 18px 6vw;
+                max-width: 98vw;
+            }
+            .qr-img img {
+                width: 180px !important;
+                height: 180px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1>Ủng hộ / Donate</h1>
+            <div class="donate-box">
+                <h2><i class="fa-solid fa-hand-holding-heart"></i> Ủng hộ tác giả</h2>
+                <div class="bank-info">
+                    <b>Ngân hàng:</b> TPBANK<br>
+                    <b>Số tài khoản:</b> <span id="account-number">0867544809</span>
+                    <button class="copy-btn" onclick="copyAccount()"><i class="fa-solid fa-copy"></i> Copy</button><br>
+                    <b>Chủ tài khoản:</b> Trần Minh Khoa
+                </div>
+                <div class="qr-img">
+                    <img id="vietqr" src="https://img.vietqr.io/image/970423-0867544809-compact2.png?accountName=TRAN%20MINH%20KHOA&amount=&addInfo=Ung%20ho%20MK%20SOF" alt="QR TPBANK 0867544809" width="240" height="240" style="display:block;margin:0 auto;">
+                </div>
+                <div class="vietqr-tip">Quét mã VietQR bằng app ngân hàng để chuyển khoản nhanh chóng.</div>
+                <div class="thanks">Cảm ơn bạn đã ủng hộ! <i class="fa-solid fa-heart" style="color:#e11d48;"></i></div>
+            </div>
+        </div>
+    </div>
+    <div id="toast" class="toast"></div>
+    <script>
+    function copyAccount() {
+        const acc = document.getElementById('account-number').textContent;
+        navigator.clipboard.writeText(acc);
+        showToast('Đã copy số tài khoản: ' + acc);
+    }
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.textContent = msg;
+        toast.className = "toast show";
+        setTimeout(() => {
+            toast.className = "toast";
+        }, 2100);
+    }
+    </script>
+</body>
+</html>
